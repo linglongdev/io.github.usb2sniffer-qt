@@ -1,0 +1,28 @@
+version: "1"
+
+package:
+  id: io.github.usb2sniffer-qt
+  name: usb2sniffer-qt
+  version: 0.1.1.1
+  kind: app
+  description: |
+    Qt-based software for USB2Sniffer
+
+command:
+  - /opt/apps/io.github.usb2sniffer-qt/files/bin/lcsniff
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/lambdaconcept/usb2sniffer-qt.git
+    version: master
+    commit: aa2d18b3f6758781c8062280166e9fcfc9bb80e6
+
+build: |
+  cd /project/linglong/sources/usb2sniffer-qt.git
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install

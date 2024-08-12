@@ -1,0 +1,49 @@
+From 2242b8d07d606912dde626b3c623fa38348214d7 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Sun, 11 Aug 2024 20:06:52 +0800
+Subject: [PATCH] install
+
+---
+ lcsniff.desktop | 11 +++++++++++
+ lcsniff.pro     |  6 ++++++
+ 2 files changed, 17 insertions(+)
+ create mode 100644 lcsniff.desktop
+
+diff --git a/lcsniff.desktop b/lcsniff.desktop
+new file mode 100644
+index 0000000..5210458
+--- /dev/null
++++ b/lcsniff.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=lcsniff
++Name=usb2sniffer
++Name[zh_CN]=usb2sniffer
++Icon=logo-alpha-small
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=lcsniff
++Version=1.1
+\ No newline at end of file
+diff --git a/lcsniff.pro b/lcsniff.pro
+index f1f212a..bdf7611 100644
+--- a/lcsniff.pro
++++ b/lcsniff.pro
+@@ -105,6 +105,12 @@ isEmpty(PREFIX) {
+ !isEmpty(PREFIX) {
+ 	target.path = $$PREFIX/bin
+ 	INSTALLS += target
++	desktop.files = lcsniff.desktop
++	desktop.path = $$PREFIX/share/applications/
++	icons.path = $$PREFIX/share/icons
++	icons.files = icons/logo-alpha-small.png
++	
++	INSTALLS += desktop icons
+ }
+ 
+ RESOURCES += \
+-- 
+2.43.4
+
